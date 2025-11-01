@@ -76,5 +76,3 @@ instance/
 Thumbs.db
 *.pem
 .env 
-frontend/src/app/citizen/login/page.jsx 
-frontend/src/app/citizen/signup/page.jsx 

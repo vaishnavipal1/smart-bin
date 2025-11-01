@@ -229,7 +229,7 @@ const handleSignup = async (e) => {
             </motion.div>
           </form>
 
-          {/* Divider */}
+          {/* Divider *
           <div className="flex items-center justify-center gap-3 my-4">
             <hr className="w-full border-gray-200" />
             <span className="text-gray-500 text-sm">or</span>
@@ -354,9 +354,7 @@ export default function CitizenSignup() {
       const { data, error } = await supabase.auth.signUp({
         email,
         password,
-        options: {
-          data: { full_name: fullName },
-        },
+        options: { data: { full_name: fullName } },
       });
 
       if (error) throw error;
@@ -388,9 +386,7 @@ export default function CitizenSignup() {
     try {
       const { error } = await supabase.auth.signInWithOAuth({
         provider: "google",
-        options: {
-          redirectTo: redirectUrl,
-        },
+        options: { redirectTo: redirectUrl },
       });
       if (error) throw error;
     } catch (err) {
@@ -496,12 +492,14 @@ export default function CitizenSignup() {
             </motion.div>
           </form>
 
+          {/* Divider */}
           <div className="flex items-center justify-center gap-3 my-4">
             <hr className="w-full border-gray-200" />
             <span className="text-gray-500 text-sm">or</span>
             <hr className="w-full border-gray-200" />
           </div>
 
+          {/* Google Signup */}
           <motion.div whileHover={{ scale: 1.02 }}>
             <Button
               type="button"
