@@ -23,20 +23,21 @@
       }
     ],
     "baseUrl": "src",
-  "paths": {
-    "@/*": ["*"]
-  }
+    "paths": {
+      "@/*": [
+        "*"
+      ]
+    }
   },
   "include": [
-    "frontend/next-env.d.ts",
+    "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
+    "**/*.jsx",
+    "**/*.js",
     ".next/types/**/*.ts",
-    ".next/dev/types/**/*.ts",
-    "**/*.mts",
-    ".next\\dev/types/**/*.ts",
-    ".next\\dev/types/**/*.ts"
-, "src/app/admin/login/page.jsx", "src/app/picker/page.jsx", "src/app/citizen/page.jsx", "src/app/citizen/login/page.jsx"  ],
+    ".next/dev/types/**/*.ts"
+  ],
   "exclude": [
     "node_modules"
   ]
