@@ -1,10 +1,13 @@
 // backend/server.js
 import express from "express";
 import cors from "cors";
+import path from "path";
 import dotenv from "dotenv";
-import authRoutes from "../../smart-bin-old/backend/routes/auth.js"; // ✅ make sure this path exists
+import authRoutes from "./routes/auth.js";  // ✅ Import routes
 
-dotenv.config({ path: "./backend/.env" });
+dotenv.config({ path: path.resolve(".env") });  // ✅ Fixed path
+console.log("✅ Loaded .env from:", path.resolve(".env"));
+console.log("✅ SUPABASE_URL:", process.env.SUPABASE_URL);
 
 const app = express();
 
