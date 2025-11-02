@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import Link from "next/link";
@@ -10,7 +10,8 @@ import { Button } from "@/components/ui/button";
 import { supabase } from "@/lib/supabaseClient";
 
 /**
- * Citizen Login page with:
+ * Citizen Login page
+ * Features:
  * - Email/password login (Supabase Auth)
  * - Google OAuth login (Supabase Auth)
  */
@@ -27,9 +28,14 @@ export default function CitizenLogin() {
   const [oauthLoading, setOauthLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
 
-  // redirect URL (use env var with fallback)
-  const redirectUrl =
-    process.env.NEXT_PUBLIC_SUPABASE_REDIRECT_URL || window.location.origin;
+  const [redirectUrl, setRedirectUrl] = useState("");
+
+  // useEffect to safely get window origin
+  useEffect(() => {
+    setRedirectUrl(
+      process.env.NEXT_PUBLIC_SUPABASE_REDIRECT_URL || window.location.origin
+    );
+  }, []);
 
   // email/password login
   const handleLogin = async (e) => {
