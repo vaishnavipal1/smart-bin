@@ -154,15 +154,27 @@ export default function PickerDashboard() {
   // ✅ Stop Scanner safely
   const stopScanner = async () => {
     if (scanner) {
-      try {
-        await scanner.stop();
-      } catch (err) {
-        console.warn("Stop error:", err.message);
-      } finally {
-        scanner.clear().catch(() => {});
-        setScanner(null);
-      }
+  try {
+    // Stop the scanner safely (supports both promise & non-promise return)
+    const stopResult = scanner.stop();
+    if (stopResult instanceof Promise) {
+      await stopResult.catch(() => {}); // prevent unhandled rejections
     }
+  } catch (err) {
+    console.warn("Scanner stop error:", err.message || err);
+  } finally {
+    try {
+      // Clear the scanner instance if method exists
+      if (typeof scanner.clear === "function") {
+        await scanner.clear().catch(() => {});
+      }
+    } catch {
+      // ignore clear errors
+    }
+    setScanner(null);
+  }
+}
+
     setScanning(false);
   };
 
